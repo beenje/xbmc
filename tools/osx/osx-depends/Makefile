@@ -1,4 +1,4 @@
-BUILDDIR=/Users/Shared/xbmc-depends/osx-10.4_i386
+BUILDDIR=/Users/Shared/xbmc-depends/osx-10.4_i386_ppc
 
 SUBDIRS = \
 	help2man autoconf automake libtool pkg-config yasm cmake \

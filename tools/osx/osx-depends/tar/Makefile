@@ -19,7 +19,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 export LIBTOOL=builds/unix/libtool
-PREFIX:=/Users/Shared/xbmc-depends/osx-10.4_i386
+PREFIX:=/Users/Shared/xbmc-depends/osx-10.4_i386_ppc
 export PATH:=$(PREFIX)/bin:$(PATH)
 CONFIGURE=./configure --prefix=$(PREFIX) \
 --program-transform-name=s/tar/gtar/ --disable-dependency-tracking

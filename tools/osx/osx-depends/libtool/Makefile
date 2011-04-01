@@ -18,7 +18,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-PREFIX:=/Users/Shared/xbmc-depends/osx-10.4_i386
+PREFIX:=/Users/Shared/xbmc-depends/osx-10.4_i386_ppc
 export PATH:=$(PREFIX)/bin:$(PATH)
 CONFIGURE=./configure --prefix=$(PREFIX) \
   --program-prefix=g
