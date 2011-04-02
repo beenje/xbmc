@@ -22,7 +22,8 @@ ARCHIVE_TOOL_FLAGS=xf
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
   --disable-music-ogg --disable-music-mp3 \
-  --disable-music-mod --disable-music-midi --disable-smpegtest --disable-sdltest
+  --disable-music-mod --disable-music-midi --disable-smpegtest --disable-sdltest \
+  --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/$(LIBNAME).a
 

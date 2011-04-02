@@ -27,7 +27,8 @@ CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
     --with-included-glib \
     --with-included-libcroco \
     --with-included-libxml \
-    --without-git --without-cvs
+    --without-git --without-cvs \
+    --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/lib$(LIBNAME).dylib
 

@@ -21,7 +21,8 @@ ARCHIVE_TOOL_FLAGS=xf
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
   --enable-thread-safe-client -with-extra-charsets=complex \
-  --without-readline --without-server --without-bench --without-docs --without-man
+  --without-readline --without-server --without-bench --without-docs --without-man \
+  --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/libmysql/.libs/$(LIBNAME).dylib
 

@@ -20,7 +20,8 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings 
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes --with-arch=arm --disable-libxml2 --disable-docs --with-freetype-config=$(PREFIX)/bin/freetype-config
+CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes --disable-libxml2 \
+  --disable-docs --with-freetype-config=$(PREFIX)/bin/freetype-config --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/lib$(LIBNAME).dylib
 

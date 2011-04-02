@@ -21,7 +21,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
-  --disable-stack-for-recursion
+  --disable-stack-for-recursion --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/(LIBNAME).dylib
 

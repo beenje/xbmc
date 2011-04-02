@@ -20,7 +20,8 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes --disable-oggtest --disable-docs --disable-examples
+CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
+  --disable-oggtest --disable-docs --disable-examples --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/$(LIBNAME).dylib
 

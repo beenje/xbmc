@@ -21,7 +21,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
---disable-fuse
+  --disable-fuse --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/lib/.libs/libafpclient.dylib
 

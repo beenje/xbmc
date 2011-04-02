@@ -21,7 +21,8 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
-   --disable-jpg-shared --disable-png-shared --disable-tif-shared --disable-sdltest
+   --disable-jpg-shared --disable-png-shared --disable-tif-shared --disable-sdltest \
+   --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/$(LIBNAME).a
 

@@ -21,7 +21,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
- --with-libintl-prefix=$(PREFIX)/lib
+ --with-libintl-prefix=$(PREFIX)/lib --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/libgpg-error.dylib
 

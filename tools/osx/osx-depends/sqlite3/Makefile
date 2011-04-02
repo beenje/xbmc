@@ -26,7 +26,8 @@ export TCLLIBDIR=/dev/null
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
   --enable-threadsafe --disable-tcl \
   --with-readline-inc="-I${PREFIX}/include" \
-  --with-readline-lib="-L${PREFIX}/lib -lreadline -lm -lncurses"
+  --with-readline-lib="-L${PREFIX}/lib -lreadline -lm -lncurses" \
+  --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/lib$(LIBNAME).dylib
 

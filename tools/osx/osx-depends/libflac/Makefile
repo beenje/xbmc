@@ -23,7 +23,8 @@ ARCHIVE_TOOL_FLAGS=xf
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
   --disable-asm-optimizations \
   --disable-xmms-plugin \
-  --disable-cpplibs
+  --disable-cpplibs \
+  --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/$(LIBNAME)/.libs/$(LIBNAME).dylib
 

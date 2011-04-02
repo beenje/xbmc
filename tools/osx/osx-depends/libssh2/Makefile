@@ -21,7 +21,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
-  --with-openssl --without-libgcrypt
+  --with-openssl --without-libgcrypt --disable-dependency-tracking
 
 SHELL := /bin/bash
 RM    := rm -rf

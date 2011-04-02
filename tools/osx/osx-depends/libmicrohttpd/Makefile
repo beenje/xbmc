@@ -22,7 +22,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
- --with-libgcrypt-prefix=/dev/null
+ --with-libgcrypt-prefix=/dev/null --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/$(LIBNAME).dylib
 

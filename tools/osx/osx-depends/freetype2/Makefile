@@ -23,7 +23,8 @@ ARCHIVE_TOOL_FLAGS=xf
 # force using internal libtool
 export LIBTOOL=builds/unix/libtool
 CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
-  --without-old-mac-fonts --without-fsspec --without-fsref --without-ats
+  --without-old-mac-fonts --without-fsspec --without-fsref --without-ats \
+  --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/objs/.libs/lib$(LIBNAME).dylib
 
