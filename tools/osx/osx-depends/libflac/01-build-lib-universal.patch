@@ -1,0 +1,12 @@
+diff -Naur flac-1.2.1.orig/build/lib.mk flac-1.2.1/build/lib.mk
+--- flac-1.2.1.orig/build/lib.mk	2007-09-13 02:51:25.000000000 +0200
++++ flac-1.2.1/build/lib.mk	2011-04-04 22:40:57.000000000 +0200
+@@ -51,7 +51,7 @@
+ RELEASE_STATIC_LIB  = $(RELEASE_LIBPATH)/$(STATIC_LIB_NAME)
+ RELEASE_DYNAMIC_LIB = $(RELEASE_LIBPATH)/$(DYNAMIC_LIB_NAME)
+ ifeq ($(DARWIN_BUILD),yes)
+-LINKD       = $(CC) -dynamiclib -flat_namespace -undefined suppress -install_name $(DYNAMIC_LIB)
++LINKD       = $(CC) -dynamiclib -undefined dynamic_lookup -install_name $(DYNAMIC_LIB)
+ else
+ LINKD       = $(CC) -shared
+ endif

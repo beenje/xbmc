@@ -21,6 +21,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
+ARCH_FLAGS=$(foreach i,$(universal_archs),-arch $(i))
 CONFIGURE=./configure --prefix=$(PREFIX) \
   --disable-asm-optimizations \
   --disable-xmms-plugin \
@@ -40,7 +41,9 @@ $(SOURCE): $(TARBALLS_LOCATION)/$(ARCHIVE)
 	-rm -rf $(SOURCE)
 	$(ARCHIVE_TOOL) $(ARCHIVE_TOOL_FLAGS) $(TARBALLS_LOCATION)/$(ARCHIVE)
 	echo $(SOURCE) > .gitignore
+	cd $(SOURCE); patch -p1 < ../01-build-lib-universal.patch
 	cd $(SOURCE); $(CONFIGURE)
+	cd $(SOURCE); sed -i .org "s/CC -dynamiclib/CC -dynamiclib $(ARCH_FLAGS)/g" libtool
 
 $(LIBDYLIB): $(SOURCE)
 	make -C $(SOURCE)
