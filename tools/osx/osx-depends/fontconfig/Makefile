@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=fontconfig
@@ -20,7 +21,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings 
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes --disable-libxml2 \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared=yes --disable-libxml2 \
   --disable-docs --with-freetype-config=$(PREFIX)/bin/freetype-config --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/lib$(LIBNAME).dylib

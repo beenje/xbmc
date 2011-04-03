@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=libmicrohttpd
@@ -21,7 +22,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
+CONFIGURE=./configure --prefix=$(PREFIX) \
  --with-libgcrypt-prefix=/dev/null --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/$(LIBNAME).dylib

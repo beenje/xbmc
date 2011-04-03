@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=libssh2
@@ -20,7 +21,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared=yes \
   --with-openssl --without-libgcrypt --disable-dependency-tracking
 
 SHELL := /bin/bash

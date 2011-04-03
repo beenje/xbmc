@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=samba
@@ -21,7 +22,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 export LDFLAGS+=-Wl,-unexported_symbol,_MD5* -lc
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes --disable-dependency-tracking \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared=yes --disable-dependency-tracking \
   --without-cluster-support --disable-swat --without-ldap --without-pam --without-pam_smbpass --with-fhs \
   ac_cv_header_libunwind_h=no \
   ac_cv_header_execinfo_h=no \

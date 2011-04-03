@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=gettext
@@ -20,7 +21,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared \
     --disable-csharp --disable-native-java --disable-java --without-emacs \
     --disable-libasprintf --disable-openmp \
     --with-included-gettext \

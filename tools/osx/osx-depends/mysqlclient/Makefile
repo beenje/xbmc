@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 LIBNAME=mysql
 VERSION=5.1.55
@@ -19,7 +20,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared \
   --enable-thread-safe-client -with-extra-charsets=complex \
   --without-readline --without-server --without-bench --without-docs --without-man \
   --disable-dependency-tracking

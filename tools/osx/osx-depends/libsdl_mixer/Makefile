@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=SDL_mixer
@@ -20,7 +21,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
+CONFIGURE=./configure --prefix=$(PREFIX) \
   --disable-music-ogg --disable-music-mp3 \
   --disable-music-mod --disable-music-midi --disable-smpegtest --disable-sdltest \
   --disable-dependency-tracking

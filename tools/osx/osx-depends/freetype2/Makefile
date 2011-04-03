@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=freetype
@@ -22,7 +23,7 @@ ARCHIVE_TOOL_FLAGS=xf
 # configuration settings
 # force using internal libtool
 export LIBTOOL=builds/unix/libtool
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared=yes \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared=yes \
   --without-old-mac-fonts --without-fsspec --without-fsref --without-ats \
   --disable-dependency-tracking
 

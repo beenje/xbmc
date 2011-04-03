@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=libmodplug
@@ -21,8 +22,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
-  --disable-dependency-tracking
+CONFIGURE=./configure --prefix=$(PREFIX) --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/.libs/$(LIBNAME).dylib
 

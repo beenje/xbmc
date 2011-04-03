@@ -6,6 +6,7 @@
 #
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=Python
@@ -23,7 +24,7 @@ ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
 export EXTRA_CFLAGS=$(CFLAGS)
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared \
   --disable-toolbox-glue --enable-unicode=ucs4 --disable-dependency-tracking
 
 LIBDYLIB=$(SOURCE)/libpython2.6.dylib

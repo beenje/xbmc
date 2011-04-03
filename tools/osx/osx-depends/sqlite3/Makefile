@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=sqlite
@@ -23,7 +24,7 @@ ARCHIVE_TOOL_FLAGS=xf
 # configuration settings
 export CXXFLAGS+=-DSQLITE_ENABLE_COLUMN_METADATA=1
 export TCLLIBDIR=/dev/null
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-shared \
+CONFIGURE=./configure --prefix=$(PREFIX) --enable-shared \
   --enable-threadsafe --disable-tcl \
   --with-readline-inc="-I${PREFIX}/include" \
   --with-readline-lib="-L${PREFIX}/lib -lreadline -lm -lncurses" \

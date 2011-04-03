@@ -5,6 +5,7 @@
 #    sudo make install
 
 include ../config.mk
+include $(foreach i,$(universal_archs), ../config.$(i).mk)
 
 # lib name, version
 LIBNAME=SDL_image
@@ -20,7 +21,7 @@ ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) \
+CONFIGURE=./configure --prefix=$(PREFIX) \
    --disable-jpg-shared --disable-png-shared --disable-tif-shared --disable-sdltest \
    --disable-dependency-tracking
 
