@@ -20,6 +20,15 @@ ARCHIVE=$(SOURCE).tar.bz2
 ARCHIVE_TOOL=tar
 ARCHIVE_TOOL_FLAGS=xf
 
+ARCH_FLAGS=$(foreach i,$(universal_archs),-arch $(i))
+ifeq ($(universal_archs), i386)
+  ARCHITECTURE=x86
+else ifeq ($(universal_archs), ppc)
+  ARCHITECTURE=power
+else
+  ARCHITECTURE=combined
+endif
+
 LIBDYLIB=$(PREFIX)/lib/libboost_thread.dylib
 
 all: $(LIBDYLIB)
@@ -31,9 +40,10 @@ $(LIBDYLIB): $(TARBALLS_LOCATION)/$(ARCHIVE)
 	rm -rf $(SOURCE)
 	$(ARCHIVE_TOOL) $(ARCHIVE_TOOL_FLAGS) $(TARBALLS_LOCATION)/$(ARCHIVE)
 	echo $(SOURCE) > .gitignore
-	cat user-config.jam-osx-10.4_i386.in >> $(SOURCE)/tools/build/v2/user-config.jam
+	sed -i .org "s/ARCH_FLAGS/$(ARCH_FLAGS)/g" user-config.jam-osx-10.4_arch.in
+	cat user-config.jam-osx-10.4_arch.in >> $(SOURCE)/tools/build/v2/user-config.jam
 	cd $(SOURCE); ./bootstrap.sh --prefix=$(PREFIX) --with-libraries=thread
-	cd $(SOURCE); ./bjam --prefix=$(PREFIX) toolset=darwin-4.0 --architecture=x86 address-model=32 target-os=darwin macosx-version=10.4 macosx-version-min=10.4 --link=static  install
+	cd $(SOURCE); ./bjam --prefix=$(PREFIX) toolset=darwin-4.0 --architecture=$(ARCHITECTURE) address-model=32 target-os=darwin macosx-version=10.4 macosx-version-min=10.4 --link=static  install
 
 clean:
 	cd $(SOURCE); ./bjam --clean
