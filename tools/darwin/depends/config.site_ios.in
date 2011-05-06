@@ -1,0 +1,63 @@
+
+#prefix_path=/Users/Shared/xbmc-depends/ios-4.2_arm7
+
+host_alias=arm-apple-darwin10
+platform_gcc_version=4.2
+#platform_sdk_version:=$(shell xcodebuild -showsdks | grep iphoneos | sort | tail -n 1 | awk '{ print $$2}')
+platform_sdk_version=@use_sdk@
+
+platform_min_version="iphoneos-version-min=4.1"
+platform_path="/Developer/Platforms/iPhoneOS.platform/Developer"
+platform_os_cflags="-arch @use_arch@ -mcpu=cortex-a8 -mfpu=neon -ftree-vectorize -mfloat-abi=softfp -pipe -Wno-trigraphs -fpascal-strings -Os -Wreturn-type -Wunused-variable -fmessage-length=0 -gdwarf-2"
+platform_os_ldflags="-arch @use_arch@ -mcpu=cortex-a8"
+platform_sdk_path="${platform_path}/SDKs/iPhoneOS${platform_sdk_version}.sdk"
+
+export HOST=${host_alias}
+#export PREFIX=${prefix_path}
+export DEVROOT=${platform_path}
+export SDKROOT=${platform_sdk_path}
+
+export NM=/usr/bin/nm
+export CPP=/usr/bin/cpp-${platform_gcc_version}
+export CXXCPP=${CPP}
+#export CXXCPP=${CPP} -I${platform_sdk_path}/usr/include/c++/4.2.1/${platform_host}
+export CPPFLAGS="-no-cpp-precomp -I${prefix}/include"
+#export CPPFLAGS="-I${platform_sdk_path}/usr/include  -I${prefix}/include"
+export CC=/usr/bin/gcc-${platform_gcc_version}
+#export CC=${platform_path}/usr/bin/${platform_host}-gcc-4.2.1
+export CFLAGS="-std=gnu99 -no-cpp-precomp -m${platform_min_version} -isysroot ${platform_sdk_path} ${platform_os_cflags} -I${platform_sdk_path}/usr/include"
+export LD=${platform_path}/usr/bin/ld
+export LDFLAGS="-m${platform_min_version} -isysroot ${platform_sdk_path} -L${platform_sdk_path}/usr/lib -L${platform_sdk_path}/usr/lib/system ${platform_os_ldflags} -L${prefix}/lib"
+#export CXX=${platform_path}/usr/bin/${platform_host}-g++-4.2.1 -I${platform_sdk_path}/usr/include/c++/4.2.1/${platform_host}
+export CXX=/usr/bin/g++-${platform_gcc_version}
+export CXXFLAGS="-m${platform_min_version} -isysroot ${platform_sdk_path} ${platform_os_cflags}"
+export AR=${platform_path}/usr/bin/ar
+export AS="${prefix}/bin/gas-preprocessor.pl ${CC}"
+export CCAS="--tag CC ${prefix}/bin/gas-preprocessor.pl ${CC}"
+export STRIP=${platform_path}/usr/bin/strip
+export RANLIB=${platform_path}/usr/bin/ranlib
+export ACLOCAL="aclocal -I ${prefix}/share/aclocal -I @use_toolchain@/share/aclocal -I ${platform_path}/usr/share/aclocal"
+#export ACLOCAL=aclocal -I ${prefix}/share/aclocal -I /Developer/usr/share/aclocal
+export LIBTOOL=@use_toolchain@/bin/glibtool
+export LIBTOOLIZE=@use_toolchain@/bin/glibtoolize
+export PKG_CONFIG_PATH=${prefix}/lib/pkgconfig:${platform_sdk_path}/usr/lib/pkgconfig
+export PATH="@use_toolchain@/bin:${prefix}/bin:${platform_path}/usr/bin:/Developer/usr/bin:${PATH}"
+
+# tweaks for samba
+if test "${PACKAGE_NAME}" = "Samba" ; then
+  # disable python support
+  export PYTHON_VER=0.0
+  # ios/osx-10.6 issue with collision of _MD5 exported from a system lib
+  export LDFLAGS="${LDFLAGS} -Wl,-unexported_symbol,_MD5* -lc"
+  # uses OPT instead of CFLAGS
+  export OPT="${CFLAGS}"
+  # various configure overrides
+  ac_cv_header_libunwind_h=no
+  ac_cv_header_execinfo_h=no
+  samba_cv_SYSCONF_SC_NPROCESSORS_ONLN=no
+fi
+
+# tweaks for python
+if test "${PACKAGE_NAME}" = "python" ; then
+  export OPT="${CFLAGS}"
+fi
