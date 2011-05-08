@@ -23,13 +23,13 @@ export CXXCPP=${CPP}
 #export CXXCPP=${CPP} -I${platform_sdk_path}/usr/include/c++/4.2.1/${platform_host}
 export CPPFLAGS=-no-cpp-precomp -I${PREFIX}/include
 #export CPPFLAGS=-I${platform_sdk_path}/usr/include  -I${PREFIX}/include
-export CC=/usr/bin/gcc-${platform_gcc_version}
+export CC=${platform_path}/usr/bin/gcc-${platform_gcc_version}
 #export CC=${platform_path}/usr/bin/${platform_host}-gcc-4.2.1
 export CFLAGS=-std=gnu99 -no-cpp-precomp -m${platform_min_version} -isysroot ${platform_sdk_path} ${platform_os_cflags} -I${platform_sdk_path}/usr/include
 export LD=${platform_path}/usr/bin/ld
 export LDFLAGS=-m${platform_min_version} -isysroot ${platform_sdk_path} -L${platform_sdk_path}/usr/lib -L${platform_sdk_path}/usr/lib/system ${platform_os_ldflags} -L${PREFIX}/lib
 #export CXX=${platform_path}/usr/bin/${platform_host}-g++-4.2.1 -I${platform_sdk_path}/usr/include/c++/4.2.1/${platform_host}
-export CXX=/usr/bin/g++-${platform_gcc_version}
+export CXX=${platform_path}/usr/bin/g++-${platform_gcc_version}
 export CXXFLAGS=-m${platform_min_version} -isysroot ${platform_sdk_path} ${platform_os_cflags}
 export AR=${platform_path}/usr/bin/ar
 export AS=${PREFIX}/bin/gas-preprocessor.pl ${CC}
