@@ -61,3 +61,8 @@ fi
 if test "${PACKAGE_NAME}" = "readline" ; then
   ac_cv_header_termcap_h=no
 fi
+
+# tweaks for fontconfig
+if test "${ac_unique_file}" = "fonts.dtd" ; then
+  with_arch=arm
+fi
