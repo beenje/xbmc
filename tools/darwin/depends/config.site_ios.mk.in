@@ -5,6 +5,7 @@ host_alias=arm-apple-darwin10
 platform_gcc_version=4.2
 #platform_sdk_version:=$(shell xcodebuild -showsdks | grep iphoneos | sort | tail -n 1 | awk '{ print $$2}')
 platform_sdk_version=@use_sdk@
+cross_compiling=yes
 
 platform_min_version=iphoneos-version-min=4.1
 platform_path=/Developer/Platforms/iPhoneOS.platform/Developer
