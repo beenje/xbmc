@@ -56,3 +56,8 @@ fi
 if test "${PACKAGE_NAME}" = "python" ; then
   export OPT="${CFLAGS}"
 fi
+
+# tweaks for readline
+if test "${PACKAGE_NAME}" = "readline" ; then
+  ac_cv_header_termcap_h=no
+fi
