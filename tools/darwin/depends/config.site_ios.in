@@ -66,3 +66,8 @@ fi
 if test "${ac_unique_file}" = "fonts.dtd" ; then
   with_arch=arm
 fi
+
+# tweaks for curl
+if test "${PACKAGE_NAME}" = "curl" ; then
+  ac_cv_file___dev_urandom_=yes
+fi
