@@ -76,3 +76,14 @@ fi
 if test "${PACKAGE_NAME}" = "libmpeg2" ; then
   export LDFLAGS="${LDFLAGS} -Wl,-read_only_relocs,suppress"
 fi
+
+# tweaks for libcdio
+if test "${PACKAGE_NAME}" = "libcdio" ; then
+  with_cd_drive=no
+  with_cd_info=no
+  with_cd_read=no
+  with_cd_paranoia=no
+  with_cdda_player=no
+  with_iso_info=no
+  with_iso_read=no
+fi
