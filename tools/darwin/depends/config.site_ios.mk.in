@@ -38,3 +38,7 @@ export LIBTOOLIZE=@use_toolchain@/bin/glibtoolize
 export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig:${platform_sdk_path}/usr/lib/pkgconfig
 export PATH:=@use_toolchain@/bin:${PREFIX}/bin:${platform_path}/usr/bin:/Developer/usr/bin:${PATH}
 
+# tweaks for boost
+#bjam_args=toolset=darwin-4.0 --architecture=arm target-os=iphone macosx-version=iphone-${platform_sdk_version} define=_LITTLE_ENDIAN
+bjam_args=toolset=darwin-${platform_gcc_version} --architecture=arm target-os=iphone macosx-version=iphone-${platform_sdk_version} define=_LITTLE_ENDIAN
+boost_flags=${platform_sdk_path} -arch @use_arch@
