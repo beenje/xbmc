@@ -21,7 +21,14 @@ $(SOURCE): $(TARBALLS_LOCATION)/$(ARCHIVE)
 	rm -rf $(SOURCE)
 	$(ARCHIVE_TOOL) $(ARCHIVE_TOOL_FLAGS) $(TARBALLS_LOCATION)/$(ARCHIVE)
 	echo $(SOURCE) > .gitignore
+	if test "$(DARWIN)" = "ios"; then \
+		cd $(SOURCE); patch -p1 < ../01-mysqlclient-cross-compile.patch; \
+		autoreconf -vif; \
+	fi
 	cd $(SOURCE); $(CONFIGURE)
+	if test "$(DARWIN)" = "ios"; then \
+		cd $(SOURCE); patch -p1 < ../02-mysqlclient-ios.patch; \
+	fi
 
 $(LIBDYLIB): $(SOURCE)
 	make -C $(SOURCE)

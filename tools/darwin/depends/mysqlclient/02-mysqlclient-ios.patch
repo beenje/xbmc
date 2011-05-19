@@ -1,0 +1,66 @@
+diff -ruN mysql-5.1.55.org/include/config.h mysql-5.1.55/include/config.h
+--- mysql-5.1.55.org/include/config.h	2011-05-19 22:01:35.000000000 +0200
++++ mysql-5.1.55/include/config.h	2011-05-19 22:26:51.000000000 +0200
+@@ -228,7 +228,7 @@
+ /* #undef HAVE_CRYPT_H */
+ 
+ /* Define to 1 if you have the <curses.h> header file. */
+-#define HAVE_CURSES_H 1
++/* #define HAVE_CURSES_H 1 */
+ 
+ /* Define to 1 if you have the `cuserid' function. */
+ /* #undef HAVE_CUSERID */
+@@ -292,7 +292,7 @@
+ /* #undef HAVE_FCONVERT */
+ 
+ /* Define to 1 if you have the `fdatasync' function. */
+-#define HAVE_FDATASYNC 1
++/* #define HAVE_FDATASYNC 1 */
+ 
+ /* Define to 1 if you have the <fenv.h> header file. */
+ #define HAVE_FENV_H 1
+@@ -925,7 +925,7 @@
+ /* #undef HAVE_TERMBITS_H */
+ 
+ /* Define to 1 if you have the <termcap.h> header file. */
+-#define HAVE_TERMCAP_H 1
++/* #define HAVE_TERMCAP_H 1 */
+ 
+ /* Define to 1 if you have the <termios.h> header file. */
+ #define HAVE_TERMIOS_H 1
+@@ -934,7 +934,7 @@
+ /* #undef HAVE_TERMIO_H */
+ 
+ /* Define to 1 if you have the <term.h> header file. */
+-#define HAVE_TERM_H 1
++/* #define HAVE_TERM_H 1 */
+ 
+ /* Define to 1 if you have the `thr_setconcurrency' function. */
+ /* #undef HAVE_THR_SETCONCURRENCY */
+diff -ruN mysql-5.1.55.org/include/my_global.h mysql-5.1.55/include/my_global.h
+--- mysql-5.1.55.org/include/my_global.h	2011-01-25 16:04:37.000000000 +0100
++++ mysql-5.1.55/include/my_global.h	2011-05-19 22:12:13.000000000 +0200
+@@ -132,7 +132,7 @@
+ #  define SIZEOF_INT 4
+ #  define SIZEOF_LONG_LONG 8
+ #  define SIZEOF_OFF_T 8
+-#  if defined(__i386__) || defined(__ppc__)
++#  if defined(__i386__) || defined(__ppc__) || defined(__arm__)
+ #    define SIZEOF_CHARP 4
+ #    define SIZEOF_LONG 4
+ #  elif defined(__x86_64__) || defined(__ppc64__)
+diff -ruN mysql-5.1.55.org/include/my_net.h mysql-5.1.55/include/my_net.h
+--- mysql-5.1.55.org/include/my_net.h	2011-01-25 16:04:48.000000000 +0100
++++ mysql-5.1.55/include/my_net.h	2011-05-19 22:13:39.000000000 +0200
+@@ -44,9 +44,9 @@
+ #endif
+ 
+ #if !defined(__WIN__) && !defined(HAVE_BROKEN_NETINET_INCLUDES) && !defined(__BEOS__) && !defined(__NETWARE__)
+-#include <netinet/in_systm.h>
++/* #include <netinet/in_systm.h> */
+ #include <netinet/in.h>
+-#include <netinet/ip.h>
++/* #include <netinet/ip.h> */
+ #if !defined(alpha_linux_port)
+ #include <netinet/tcp.h>
+ #endif
