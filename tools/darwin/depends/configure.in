@@ -88,4 +88,6 @@ AC_OUTPUT
 AC_MSG_RESULT(setting up config.site files)
 cp config.site ${use_prefix}/share/config.site
 
+AC_MSG_RESULT(setting up python26 Makefile)
+cp python26/Makefile.${use_darwin} python26/Makefile
 

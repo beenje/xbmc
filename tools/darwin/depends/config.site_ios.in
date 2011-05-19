@@ -57,7 +57,9 @@ fi
 
 # tweaks for python
 if test "${PACKAGE_NAME}" = "python" ; then
-  export OPT="${CFLAGS}"
+  export CC="${CC} -arch armv7"
+  export LD="${LD} -arch armv7"
+  export CPPFLAGS="${CPPFLAGS} -I${platform_sdk_path}/usr/include"
 fi
 
 # tweaks for readline
