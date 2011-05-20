@@ -340,6 +340,10 @@ case $host in
      use_joystick=no
      use_vdadecoder=no
      use_vtbdecoder=yes
+     use_optical_drive=no
+     use_dvdcss=no
+     use_gles=yes
+     use_cpu=cortex-a8
      check_sdl_arch=[`file /opt/local/lib/libSDL_image.dylib | awk '{V=7; print $V}'`]
      if test "x$check_sdl_arch" = "xi386"; then
        use_texturepacker_native=yes
