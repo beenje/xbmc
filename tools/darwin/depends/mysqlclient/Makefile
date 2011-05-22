@@ -27,6 +27,11 @@ $(SOURCE): $(TARBALLS_LOCATION)/$(ARCHIVE)
 	fi
 	cd $(SOURCE); $(CONFIGURE)
 	if test "$(DARWIN)" = "ios"; then \
+		sed -i "" -e "s|#define HAVE_CURSES_H 1|/* & */|" \
+			-e "s|#define HAVE_FDATASYNC 1|/* & */|" \
+			-e "s|#define HAVE_TERMCAP_H 1|/* & */|" \
+			-e "s|#define HAVE_TERM_H 1|/* & */|" \
+			$(SOURCE)/include/config.h; \
 		cd $(SOURCE); patch -p1 < ../02-mysqlclient-ios.patch; \
 	fi
 
